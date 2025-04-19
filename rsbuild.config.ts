@@ -1,5 +1,6 @@
 import { defineConfig } from '@rsbuild/core';
 import { pluginVue2 } from '@rsbuild/plugin-vue2';
+import path from 'path';
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -8,9 +9,10 @@ export default defineConfig({
   source: {
     // 渲染进程入口文件
     entry: {
-      index: './src/renderer/main.ts', // 或 main.js
+      index: './src/main.ts', // 或 main.js
     },
-    tsconfigPath: "./tsconfig.app.json"
+    tsconfigPath: "./tsconfig.app.json",
+    exclude: [path.resolve(__dirname, 'src/main')]
   },
   output: {
     // 输出目录调整为 dist/renderer
@@ -25,7 +27,7 @@ export default defineConfig({
   },
   html: {
     // HTML 模板
-    template: './src/renderer/index.html',
+    template: './src/index.html',
   },
   dev: {
     // 开发服务器资源也使用相对路径,确保 Electron 能加载
