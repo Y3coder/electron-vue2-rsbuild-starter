@@ -1,0 +1,57 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Start Dev Servers (for Debugging)", // Matches preLaunchTask name if not using npm: prefix
+			"type": "shell", // Use shell to run the concurrently command
+			"command": "pnpm",
+			"args": ["run", "start-dev-servers"],
+			"isBackground": true, // Run the task in the background
+			"problemMatcher": {
+				// This basic matcher helps VS Code know the task is running.
+				// You might need a more sophisticated one to detect when BOTH servers are truly ready.
+				"owner": "custom",
+				"pattern": {
+					"regexp": ".*" // Simple pattern, adjust if needed
+				},
+				"background": {
+					"activeOnStart": true,
+					"beginsPattern": "^.*(Starting development server|Compiling...).*", // Adjust based on Rsbuild output
+					"endsPattern": "^.*(ready in|compiled successfully|listening on.*3000).*" // Wait for renderer server mostly
+				}
+			},
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated", // Show output in a dedicated terminal panel
+				"clear": true
+			}
+		}
+		// Or using the npm type task:
+		// {
+		// 	"label": "npm: dev:debug", // Label matches preLaunchTask directly
+		// 	"type": "npm",
+		// 	"script": "dev:debug",
+		// 	"isBackground": true,
+		// 	// "problemMatcher": { ... same as above ... },
+		// 	// "presentation": { ... same as above ... },
+		// 	"problemMatcher": {
+		// 		// This basic matcher helps VS Code know the task is running.
+		// 		// You might need a more sophisticated one to detect when BOTH servers are truly ready.
+		// 		"owner": "custom",
+		// 		"pattern": {
+		// 			"regexp": ".*" // Simple pattern, adjust if needed
+		// 		},
+		// 		"background": {
+		// 			"activeOnStart": true,
+		// 			"beginsPattern": "^.*(Starting development server|Compiling...).*", // Adjust based on Rsbuild output
+		// 			"endsPattern": "^.*(ready in|compiled successfully|listening on.*3000).*" // Wait for renderer server mostly
+		// 		}
+		// 	},
+		// 	"presentation": {
+		// 		"reveal": "always",
+		// 		"panel": "dedicated", // Show output in a dedicated terminal panel
+		// 		"clear": true
+		// 	}
+		// }
+	]
+}

@@ -1,0 +1,22 @@
+{
+	"compilerOptions": {
+		"sourceMap": true,
+		"strict": true,
+		"target": "esnext",
+		"module": "esnext",
+		"moduleResolution": "node",
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["src/*"]
+		},
+		"lib": ["esnext", "dom"],
+		"types": ["node"],
+		"allowJs": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+		"resolveJsonModule": true,
+		"noEmit": true,
+		"incremental": true,
+		"declaration": true
+	}
+}

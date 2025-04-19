@@ -1,0 +1,6 @@
+node_modules
+dist
+.idea
+release
+.vscode/chrome-debug-user-data
+pnpm-lock.yaml

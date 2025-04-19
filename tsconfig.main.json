@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2020", // 选择与 Electron 内置 Node 版本兼容的目标
+    "module": "CommonJS",
+    "outDir": "./dist/main", // 输出到 dist/main
+    "rootDir": "./src/main",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "sourceMap": true // 开发时生成 source map
+    // "noEmitOnError": true, // 生产构建时可以开启
+  },
+  "include": ["src/main/**/*"], // 包含主进程和预加载脚本
+  "exclude": ["node_modules"]
+}

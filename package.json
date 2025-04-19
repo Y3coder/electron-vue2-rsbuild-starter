@@ -1,0 +1,77 @@
+{
+  "name": "yyyWork",
+  "version": "1.0.0",
+  "description": "A Vue 2.7 + Rsbuild + Electron app",
+  "main": "dist/main/index.js", 
+  "scripts": {
+    "dev:renderer": "cross-env NODE_ENV=development rsbuild dev --port 3000",
+    "dev:main": "cross-env NODE_ENV=development rsbuild build --watch -c rsbuild.main.config.ts",
+
+    "start:electron": "wait-on tcp:3000 && cross-env NODE_ENV=development electron .", 
+    "start:electron:wait": "wait-on tcp:3000 && cross-env NODE_ENV=development electron ." ,
+    "dev:electron": "nodemon --watch dist/main/index.js --exec \"pnpm start:electron\"", 
+    "dev:rs": "concurrently -k \"pnpm dev:main\" \"pnpm dev:renderer\" \"pnpm dev:electron\"",
+    "dev": "concurrently -k \"pnpm dev:main\" \"pnpm dev:renderer\" \"pnpm start:electron:wait\"",
+
+    "start-dev-servers": "concurrently -k \"pnpm dev:main\" \"pnpm dev:renderer\"",
+    "dev:debug": "pnpm start-dev-servers",
+
+    "build:renderer": "cross-env NODE_ENV=production rsbuild build",
+    "build:main": "cross-env NODE_ENV=production rsbuild build -c rsbuild.main.config.ts", 
+
+    "build": "pnpm build:renderer && pnpm build:main", 
+
+    "package": "pnpm build && electron-builder",
+    "package:win": "pnpm build && electron-builder --win",
+    "package:mac": "pnpm build && electron-builder --mac",
+    "package:linux": "pnpm build && electron-builder --linux",
+
+    "lint": "eslint . --ext .js,.ts,.vue",
+    "format": "prettier --write ."
+  },
+  "build": { 
+    "appId": "com.example.myvue2electronrsbuildapp",
+    "productName": "yyyWork",
+    "directories": {
+      "output": "release", 
+      "app": "." 
+    },
+    "files": [ 
+      "dist/main/**/*",
+      "dist/renderer/**/*",
+      "package.json" 
+    ],
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis" 
+    },
+    "linux": {
+      "target": "AppImage" 
+    },
+    "nsis": { 
+      "oneClick": false, 
+      "allowToChangeInstallationDirectory": true 
+    }
+  },
+  "keywords": ["vue", "electron", "rsbuild", "rspack", "vue2"],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "vue": "2.7.16"
+  },
+  "devDependencies": {
+    "@rsbuild/core": "1.2.12",
+    "@rsbuild/plugin-vue2": "^1.0.2",
+    "@types/electron": "^1.6.12",
+    "@types/node": "^22.14.0",
+    "concurrently": "^9.1.2",
+    "cross-env": "^7.0.3",
+    "electron": "35.1.4",
+    "electron-builder": "^26.0.12",
+    "nodemon": "^3.1.9",
+    "typescript": "^5.8.3",
+    "wait-on": "^8.0.3"
+  }
+}
