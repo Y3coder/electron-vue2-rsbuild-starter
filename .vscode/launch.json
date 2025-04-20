@@ -15,7 +15,16 @@
 			"webRoot": "${workspaceFolder}",
 			"sourceMaps": true, // 确保开启
 			// 设置为 false 或指定一个目录,避免与日常使用的浏览器配置冲突
-			"userDataDir": false
+			"userDataDir": false,
+			"sourceMapPathOverrides": {
+				"webpack-vue:///src/*": "${webRoot}/src/*", // 也可以这样写
+				"webpack-vue:///./src/*": "${webRoot}/src/*" // 也可以这样写
+				// "webpack-generated:///*": "*", // 更通用的 webpack 规则,有时需要
+				// "webpack-generated:///./*": "${webRoot}/*" // 另一个常见的 webpack 模式
+				// "webpack:///src/*": "${webRoot}/src/*", // 也可以这样写
+				// "webpack:///./src/*": "${webRoot}/src/*" // 也可以这样写
+			},
+			"trace": true
 			// 如果 VS Code 找不到浏览器,可能需要指定路径:
 			// "runtimeExecutable": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe" // Windows Chrome 示例
 		},
