@@ -1,5 +1,4 @@
 {
-  "name": "yyyWork",
   "version": "1.0.0",
   "description": "A Vue 2.7 + Rsbuild + Electron app",
   "main": "dist/main/index.js", 
@@ -30,7 +29,7 @@
     "vue": "2.7.16"
   },
   "devDependencies": {
-    "@rsbuild/core": "1.2.12",
+    "@rsbuild/core": "^1.3.9",
     "@rsbuild/plugin-vue2": "^1.0.2",
     "@types/electron": "^1.6.12",
     "@types/node": "^22.14.0",

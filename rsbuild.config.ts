@@ -1,18 +1,21 @@
-import { defineConfig } from '@rsbuild/core';
+import { defineConfig, loadEnv } from '@rsbuild/core';
 import { pluginVue2 } from '@rsbuild/plugin-vue2';
 import path from 'path';
 
 const isProd = process.env.NODE_ENV === 'production';
 
+const { publicVars } = loadEnv({ prefixes: ['VUE_'] })
+
 export default defineConfig({
-  plugins: [pluginVue2()],
+  plugins: [pluginVue2({})],
   source: {
     // 渲染进程入口文件
     entry: {
       index: './src/main.ts', // 或 main.js
     },
     tsconfigPath: "./tsconfig.app.json",
-    exclude: [path.resolve(__dirname, 'src/main')]
+    exclude: [path.resolve(__dirname, 'src/main')],
+    define: publicVars
   },
   output: {
     // 输出目录调整为 dist/renderer
