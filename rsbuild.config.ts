@@ -46,7 +46,7 @@ export default defineConfig({
   tools: {
     // 如果需要对 rspack 进行更细致的配置 (通常不需要)
     rspack: (config, { env, HtmlPlugin }) => {
-      // config.target = 'electron-renderer'; // 明确目标环境
+      //以下配置为vscode调试时,可以正确显示源码
       if (process.env.NODE_ENV === 'development') {
         config.output = config.output ? {
           ...config.output,
