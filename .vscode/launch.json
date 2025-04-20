@@ -74,7 +74,7 @@
 			// List the names of the configurations to launch
 			"configurations": ["Electron: Main", "Electron: Renderer"],
 			// Optional: Run a task before launching (e.g., start dev servers)
-			"preLaunchTask": "npm: dev:debug", // See step 3 below
+			// "preLaunchTask": "npm: dev:debug", // See step 3 below
 			"stopAll": true // Stop both debuggers when the compound session stops
 		}
 	]

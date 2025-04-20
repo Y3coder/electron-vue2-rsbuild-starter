@@ -65,10 +65,10 @@ export default defineConfig({
       ];
 
       // 如果确实需要显式设置输出格式 (通常 target: 'electron-main' 就够了)
-      config.output = {
-        ...config.output,
-        libraryTarget: 'commonjs2', // 或者 'commonjs'
-      };
+      // config.output = {
+      //   ...config.output,
+      //   libraryTarget: 'commonjs2', // 或者 'commonjs'
+      // };
       config.target = 'electron-main';
 
       // 你可以在这里进行其他的 Rspack 底层配置
