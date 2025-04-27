@@ -2,7 +2,6 @@
   <div id="app-content">
     <h1>{{ message }}</h1>
     <HelloWorld />
-    <button @click="handleClick">点我</button>
   </div>
 </template>
 

@@ -3,7 +3,6 @@
     <p>This is the HelloWorld component.</p>
     <button @click="handleClick">点我</button>
     <button @click="handleClick2">点我2</button>
-    <aaa />
   </div>
 </template>
 
