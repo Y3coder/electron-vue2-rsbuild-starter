@@ -1,0 +1,22 @@
+diff --git a/lib/index.js b/lib/index.js
+index a65a73abfd8b3361a50e64e5cebded280f7e72d2..a03f000fc9baf6b3e00300762dfc0b4e6f1bca3a 100644
+--- a/lib/index.js
++++ b/lib/index.js
+@@ -26,7 +26,7 @@ module.exports = function (source) {
+     loaderContext.emitError(
+       new Error(
+         `vue-loader was used without the corresponding plugin. ` +
+-          `Make sure to include VueLoaderPlugin in your webpack config.`
++        `Make sure to include VueLoaderPlugin in your webpack config.`
+       )
+     )
+     errorEmitted = true
+@@ -69,7 +69,7 @@ module.exports = function (source) {
+   const descriptor = compiler.parse({
+     source,
+     compiler: options.compiler || templateCompiler,
+-    filename,
++    filename: request,
+     sourceRoot,
+     needMap: sourceMap
+   })

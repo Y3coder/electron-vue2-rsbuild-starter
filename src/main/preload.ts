@@ -1,9 +1,11 @@
 import { contextBridge, ipcRenderer } from 'electron';
+import { promises as fs } from 'fs';
+import path from 'path';
 
 // 安全地暴露 API 给渲染进程
 contextBridge.exposeInMainWorld('electronAPI', {
-  // 示例:暴露一个调用主进程的方法
-  // doSomething: (data) => ipcRenderer.invoke('do-something', data),
+  // 暴露一个调用主进程的方法
+  doSomething: (data: string) => ipcRenderer.invoke('do-something', data),
 
   // 示例:接收来自主进程的消息
   // onUpdateCounter: (callback) => ipcRenderer.on('update-counter', (_event, value) => callback(value)),
