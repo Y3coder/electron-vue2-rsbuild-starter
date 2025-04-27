@@ -21,8 +21,8 @@
   }
 
   const handleClick2 = () => {
-    const xmlFile = XmlUtils.readXmlFile('/static/table-config.xml', true)
-    xmlFile.then(res => console.log(res))
+    const xmlFile = XmlUtils.loadXmlDoc('./static/table-config.xml')
+    console.log(xmlFile)
   }
 </script>
 

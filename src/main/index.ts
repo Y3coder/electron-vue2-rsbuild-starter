@@ -1,6 +1,7 @@
-import { app, BrowserWindow, screen, ipcMain } from 'electron';
+import { app, BrowserWindow, screen, ipcMain, protocol } from 'electron';
 import path from 'path';
 import url from 'url';
+import createProtocol from './utils/createProtocol';
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
@@ -24,7 +25,7 @@ function createWindow() {
     },
   });
   console.log(process.env.NODE_ENV)
-  if (isDevelopment) {
+  if (!isDevelopment) {
     // 开发环境:加载 Rsbuild dev server URL
     // 等待 Rsbuild server 启动后再加载 (由 wait-on 处理)
     const devServerUrl = `http://localhost:${process.env.DEV_SERVER_PORT || 3000}`; // 与 Rsbuild dev port 匹配
@@ -37,11 +38,13 @@ function createWindow() {
     mainWindow.webContents.openDevTools();
   } else {
     // 生产环境:加载构建后的 HTML 文件
-    const indexPath = path.join(__dirname, '../renderer/index.html'); // 相对于编译后的 main/index.js
-    console.log(`Loading file: ${indexPath}`);
-    mainWindow.loadFile(indexPath).catch(err => {
-      console.error("Failed to load production file:", err);
-    });
+    // const indexPath = path.join(__dirname, '../renderer/index.html'); // 相对于编译后的 main/index.js
+    // console.log(`Loading file: ${indexPath}`);
+    // mainWindow.loadFile(indexPath).catch(err => {
+    //   console.error("Failed to load production file:", err);
+    // });
+    createProtocol('app'); // 注册协议
+    mainWindow.loadURL('app://renderer/index.html');
   }
 
   // 可以在这里处理来自渲染进程的 IPC 消息

@@ -2,6 +2,24 @@
  * XML工具类,提供XML与JavaScript对象之间的转换功能
  */
 export class XmlUtils {
+
+  /**
+   * 读取XML文件内容
+   * @param file 文件路径或URL
+   * @returns 读取到的XML文档
+   */
+  static loadXmlDoc(file: string | URL): Document {
+    if (window.electronAPI) {
+      
+    }
+    let xmlHttp = new XMLHttpRequest();
+    xmlHttp.open('GET', file, false);
+    xmlHttp.send(null);
+    //返回doc
+    return xmlHttp.responseXML as Document;
+  }
+
+
   /**
    * 将XML字符串解析为JavaScript对象
    * @param xmlString XML字符串
